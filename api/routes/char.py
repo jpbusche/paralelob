@@ -22,12 +22,12 @@ def create_char():
     data = CharParser.parser.parse_args()
     adventure = Adventure.get_adventure(data['adventure'])
     user = User.get_user_by_id(get_jwt_identity())
-    if Char.get_char(data['name'], user, adventure):
+    if Char.get_char(data['name'], user, adventure.name):
         return jsonify(message='Personagem já existente!'), 400
     if adventure:
         try:
-            char = Char.create_char(data['name'], data['attribute'], user, adventure)
-            return jsonify(name=char.name, attribute=char.attribute, user=char.user.username, adventure=char.adventure.name), 201
+            char = Char.create_char(data['name'], data['attribute'], user, adventure.name)
+            return jsonify(name=char.name, attribute=char.attribute, user=char.user.username, adventure=char.adventure), 201
         except Exception as e:
             return jsonify(message=e), 500
     return jsonify(message='Aventura escolhida não existe!'), 400
@@ -39,9 +39,9 @@ def get_char():
     user = User.get_user_by_id(get_jwt_identity())
     adventure = Adventure.get_adventure(data['adventure'])
     print(adventure)
-    char = Char.get_char(data['name'], user, adventure)
+    char = Char.get_char(data['name'], user, adventure.name)
     if char:
-        return jsonify(name=char.name, attribute=char.attribute, adventure=char.adventure.name)
+        return jsonify(name=char.name, attribute=char.attribute, adventure=char.adventure)
     return jsonify(message='Não existe esse personagem!'), 404
 
 @char_blueprint.route('/list', methods=['GET'])
@@ -56,5 +56,5 @@ def list_chars():
 def mount_chars(chars):
     res = []
     for char in chars:
-        res.append({'name': char.name, 'attribute': char.attribute, 'adventure': char.adventure.name})
+        res.append({'name': char.name, 'attribute': char.attribute, 'adventure': char.adventure})
     return res

@@ -9,7 +9,7 @@ class Char(Document):
     name = StringField(required=True, max_length=20)
     attribute = IntField(required=True, min_value=2, max_value=5)
     user = ReferenceField(User)
-    adventure = ReferenceField(Adventure)
+    adventure = StringField(required=True)
 
     def create_char(_name, _attribute, _user, _adventure):
         return Char(name=_name, attribute=_attribute, user=_user,
