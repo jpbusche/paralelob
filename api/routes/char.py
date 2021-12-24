@@ -1,4 +1,3 @@
-import json
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import reqparse
@@ -6,6 +5,7 @@ from flask_restful import reqparse
 from models.adventure import Adventure
 from models.char import Char
 from models.user import User
+from services.utils import mount_chars
 
 
 char_blueprint = Blueprint('char', __name__)
@@ -50,9 +50,3 @@ def list_chars():
     if not chars:
         return jsonify(message='Não existe personagens para esse usuário!'), 404
     return jsonify(chars=mount_chars(chars))
-
-def mount_chars(_chars):
-    chars = []
-    for char in _chars:
-        chars.append({'name': char.name, 'attribute': char.attribute, 'adventure': char.adventure})
-    return chars

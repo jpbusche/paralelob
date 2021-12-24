@@ -19,4 +19,3 @@ class Char(Document):
 
     def list_char_user(_user):
         return Char.objects(user=_user)
-
