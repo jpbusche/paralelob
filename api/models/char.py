@@ -14,8 +14,8 @@ class Char(Document):
         return Char(name=_name, attribute=_attribute, user=_user,
                     adventure=_adventure).save()
     
-    def get_char(_name, _user, _adventure):
-        return Char.objects(name=_name, user=_user, adventure=_adventure).first()
+    def get_char(_name, _adventure):
+        return Char.objects(name=_name, adventure=_adventure).first()
 
     def list_char_user(_user):
         return Char.objects(user=_user)

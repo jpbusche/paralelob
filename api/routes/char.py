@@ -22,7 +22,7 @@ def create_char():
     data = CharParser.parser.parse_args()
     adventure = Adventure.get_adventure(data['adventure'])
     user = User.get_user_by_id(get_jwt_identity())
-    if Char.get_char(data['name'], user, adventure.name):
+    if Char.get_char(data['name'], adventure.name):
         return jsonify(message='Personagem já existente!'), 400
     if adventure:
         try:
@@ -35,12 +35,11 @@ def create_char():
 @char_blueprint.route('', methods=['GET'])
 def get_char():
     data = request.args
-    user = User.get_user_by_id(get_jwt_identity())
     adventure = Adventure.get_adventure(data['adventure'])
     print(adventure)
-    char = Char.get_char(data['name'], user, adventure.name)
+    char = Char.get_char(data['name'], adventure.name)
     if char:
-        return jsonify(name=char.name, attribute=char.attribute, adventure=char.adventure)
+        return jsonify(name=char.name, attribute=char.attribute)
     return jsonify(message='Não existe esse personagem!'), 404
 
 @char_blueprint.route('/list', methods=['GET'])
