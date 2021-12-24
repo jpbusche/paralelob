@@ -27,6 +27,6 @@ def create_adventure():
         return jsonify(message='Aventura já existente!'), 400
     try:
         adventure = Adventure.create_adventure(data['name'])
-        return jsonify(name=adventure.name)
+        return jsonify(name=adventure.name), 201
     except Exception as e:
         return jsonify(message=e), 500

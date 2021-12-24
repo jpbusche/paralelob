@@ -12,3 +12,6 @@ class User(Document):
 
     def get_user(_username):
         return User.objects(username=_username).first()
+    
+    def get_user_by_id(_id):
+        return User.objects(id=_id).first()
