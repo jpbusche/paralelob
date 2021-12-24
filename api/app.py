@@ -7,6 +7,7 @@ from services.mongo_database import start_mongo
 from routes.user import user_blueprint
 from routes.adventure import adventure_blueprint
 from routes.char import char_blueprint
+from routes.roll import roll_blueprint
 
 
 def create_app():
@@ -16,6 +17,7 @@ def create_app():
     app.register_blueprint(user_blueprint)
     app.register_blueprint(adventure_blueprint, url_prefix='/adventure')
     app.register_blueprint(char_blueprint, url_prefix='/char')
+    app.register_blueprint(roll_blueprint, url_prefix='/roll')
     CORS(app)
     JWTManager(app)
     app.run(port=5000)

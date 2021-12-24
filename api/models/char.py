@@ -1,6 +1,5 @@
 from mongoengine import Document, StringField, IntField, ReferenceField
 
-from models.adventure import Adventure
 from models.user import User
 
 

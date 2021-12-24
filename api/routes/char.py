@@ -33,7 +33,6 @@ def create_char():
     return jsonify(message='Aventura escolhida não existe!'), 400
 
 @char_blueprint.route('', methods=['GET'])
-@jwt_required()
 def get_char():
     data = request.args
     user = User.get_user_by_id(get_jwt_identity())
@@ -53,8 +52,8 @@ def list_chars():
         return jsonify(message='Não existe personagens para esse usuário!'), 404
     return jsonify(chars=mount_chars(chars))
 
-def mount_chars(chars):
-    res = []
-    for char in chars:
-        res.append({'name': char.name, 'attribute': char.attribute, 'adventure': char.adventure})
-    return res
+def mount_chars(_chars):
+    chars = []
+    for char in _chars:
+        chars.append({'name': char.name, 'attribute': char.attribute, 'adventure': char.adventure})
+    return chars
