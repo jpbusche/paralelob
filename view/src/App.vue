@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -10,4 +11,8 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "AncientModernTales";
+  src: url('/fonts/AncientModernTales.otf') format('truetype');
+}
 </style>
