@@ -1,13 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import FlashMessage from '@smartweb/vue-flash-message';
 
 import router from './routes'
 import App from './App.vue'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
+Vue.use(FlashMessage)
 
-const store = new Vuex.Store({})
+const store = new Vuex.Store({
+  state: {
+    config: null,
+    is_admin: false,
+    user: ''
+  }
+})
 
 new Vue({
   router,
