@@ -28,8 +28,8 @@ export default {
       axios.post(`http://localhost:5000/login`, payload)
       .then(response => {
         var data = response.data;
+        console.log(data)
         self.$store.state.is_admin = data['admin']
-        self.$store.state.user = data['username']
         self.$store.state.config = {
           headers: {
             Authorization: `Bearer ${data['access_token']}`

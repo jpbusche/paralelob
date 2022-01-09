@@ -12,8 +12,7 @@ Vue.use(FlashMessage)
 const store = new Vuex.Store({
   state: {
     config: null,
-    is_admin: false,
-    user: ''
+    is_admin: false
   }
 })
 

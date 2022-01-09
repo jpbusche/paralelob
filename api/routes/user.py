@@ -19,7 +19,7 @@ def login():
     user = User.get_user(data['username'])
     if user and safe_str_cmp(user.password, data['password']):
         access_token = create_access_token(identity=str(user.id))
-        return jsonify(access_token=access_token, username=user.username, admin=user.is_admin)
+        return jsonify(access_token=access_token, admin=user.is_admin)
     return jsonify(message='Não foi possível realizar o login'), 401
 
 @user_blueprint.route('/create_user', methods=['POST'])
