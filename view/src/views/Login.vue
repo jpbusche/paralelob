@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="https://i.ibb.co/QY5PrFH/Logo.png" alt="Logo">
+    <img class="paralelo" src="https://i.ibb.co/QY5PrFH/Logo.png" alt="Logo">
     <input class="login-input" placeholder="Usuário" type="text" v-model="username">
     <input class="login-input" placeholder="Senha" type="password" v-model="password">
     <button class="login-button" type="submit" v-on:click="login">Logar</button>
@@ -35,6 +35,7 @@ export default {
             Authorization: `Bearer ${data['access_token']}`
           }
         }
+        self.$router.push(`/index`);
         self.flashMessage.success({
           message: 'Login realizado!'
         })
@@ -53,7 +54,7 @@ export default {
 </script>
 
 <style>
-  img {
+  .paralelo {
     margin: 50px 35% 10px;
     width: 500px;
   }

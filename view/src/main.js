@@ -7,7 +7,9 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
-Vue.use(FlashMessage)
+Vue.use(FlashMessage, {
+  time: 2000
+})
 
 const store = new Vuex.Store({
   state: {
